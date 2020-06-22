@@ -624,7 +624,8 @@ export default {
 																		personal,
 																		professional,
 																		contact,
-																		bank
+																		bank,
+																		propertyRequest:document.getElementById('propId').value
 
 																	},
 																	{
@@ -636,7 +637,7 @@ export default {
 																		task.on('state_changed',function complete(){
 																			var task1 = firebase.storage().ref("userImage/"+this.imageid).put(user_new_img)
 																			task1.on('state_changed',function complete(){
-																				var task2 = firebase.storage().ref("agreement/"+document.getElementById('propId').value).put(agreementDoc);
+																				var task2 = firebase.storage().ref("agreement/"+this.uid).put(agreementDoc);
 																				task2.on('state_changed', function complete(){
 																				document.getElementById('data-uploaded').click()
 																				})
@@ -662,7 +663,7 @@ export default {
 																		}
 
 																		if( agreementDoc != undefined){
-																			var task = firebase.storage().ref("agreement/"+document.getElementById('propId').value).put(agreementDoc);
+																			var task = firebase.storage().ref("agreement/"+this.uid).put(agreementDoc);
 																			task.on('state_changed', function complete(){
 																				//document.getElementById('data-uploaded').click()
 																			})
