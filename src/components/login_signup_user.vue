@@ -46,7 +46,7 @@
      </div>
      <h6 style="margin-top:10px;margin:10px auto">Proceed to Dashboard</h6>
    </div>
-     <router-link to="/"><i style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:50px;color:rgb(60, 183, 198);" class="fa fa-home" aria-hidden="true"></i></router-link>
+     <router-link to="/"><i style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:50px;color:rgb(60, 183, 198);" class="fa fa-home" @click="reloadfun()" aria-hidden="true"></i></router-link>
 
  </div>
 </template>
@@ -73,6 +73,9 @@ export default {
     window.enrty_via_gmail = this.enrty_via_gmail; //expose this function to use on sucess logged in.
   },
   methods:{
+    reloadfun(){
+      location.reload();
+    },
    async enrty_via_gmail(){ // login the user on gmail log in
     if(user_profile!=false){
       await db.collection('TempuserProfile').doc(user_profile.getId()).get().then((docSnapshot) => {
@@ -132,7 +135,7 @@ export default {
           {
             var code = document.getElementById("otp").value;
             this.confirmationResult.confirm(code).then((result)=>{
-              alert('user phone verified')
+             
               //user verifed and sending data to firebase
               db.collection('TempuserProfile').doc(email+phone).set({
                 email:email,
@@ -192,11 +195,15 @@ export default {
 
           verification(){
 
-            let name = document.getElementById('f-name').value+document.getElementById('l-name').value;
+         
             let phone = document.getElementById('pass').value;
             let password = document.getElementById('c-pass').value;
             var passcode;
             db.collection('TempuserProfile').where("phone", "==", phone).get().then(res =>{
+              if(res.docs.length==0){
+                  alert('user not exists')
+                  return;
+              }
               res.forEach((doc) => {
                 if(doc.data().password == password){
                   document.getElementsByClassName('close')[0].click();
@@ -211,7 +218,7 @@ export default {
                   this.$router.push('/user') 
                 }
                 else{
-                  alert('user not exists')
+                  alert('Wrong Password')
                 }
               }); 
             }).catch(err =>{

@@ -632,11 +632,11 @@ export default {
 																	})
 
 																	if(proofDoc != undefined && user_new_img != undefined && agreementDoc != undefined){
-																		var task = firebase.storage().ref("TempuserProof/"+this.proofid).put(proofDoc);
+																		var task = firebase.storage().ref("userProof/"+this.proofid).put(proofDoc);
 																		task.on('state_changed',function complete(){
-																			var task1 = firebase.storage().ref("TempuserImage/"+this.imageid).put(user_new_img)
+																			var task1 = firebase.storage().ref("userImage/"+this.imageid).put(user_new_img)
 																			task1.on('state_changed',function complete(){
-																				var task2 = firebase.storage().ref("TempAgreement/"+document.getElementById('propId').value).put(agreementDoc);
+																				var task2 = firebase.storage().ref("agreement/"+document.getElementById('propId').value).put(agreementDoc);
 																				task2.on('state_changed', function complete(){
 																				document.getElementById('data-uploaded').click()
 																				})
@@ -649,20 +649,20 @@ export default {
 
 																		if(user_new_img != undefined)
 																		{
-																			var task = firebase.storage().ref("TempuserImage/"+this.imageid).put(user_new_img);
+																			var task = firebase.storage().ref("userImage/"+this.imageid).put(user_new_img);
 																			task.on('state_changed', function complete(){
 																				//document.getElementById('data-uploaded').click()
 																			})
 																		}
 																		if(proofDoc != undefined){
-																			var task = firebase.storage().ref("TempuserProof/"+this.proofid).put(proofDoc);
+																			var task = firebase.storage().ref("userProof/"+this.proofid).put(proofDoc);
 																			task.on('state_changed', function complete(){
 																				//document.getElementById('data-uploaded').click()
 																			})
 																		}
 
 																		if( agreementDoc != undefined){
-																			var task = firebase.storage().ref("TempAgreement/"+document.getElementById('propId').value).put(agreementDoc);
+																			var task = firebase.storage().ref("agreement/"+document.getElementById('propId').value).put(agreementDoc);
 																			task.on('state_changed', function complete(){
 																				//document.getElementById('data-uploaded').click()
 																			})
@@ -859,7 +859,7 @@ export default {
 	this.imageid = store.state.email+store.state.phone
 	this.proofid = store.state.email+store.state.phone
 	var uid = store.state.email+store.state.phone;
-	firebase.storage().ref("TempuserImage/"+uid).getDownloadURL().then(url =>{ 
+	firebase.storage().ref("userImage/"+uid).getDownloadURL().then(url =>{ 
 		this.user = url;
 	}).catch(err =>{
 		this.user = "https://img.favpng.com/21/13/5/user-profile-default-computer-icons-network-video-recorder-png-favpng-7dPZA8WRdY80Uw3bdMWkEN4fR.jpg"
