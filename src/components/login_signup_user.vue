@@ -20,7 +20,7 @@
                 <li><button id="m-signIn" @click="registration()">Sign In</button><span id="logorsin" style="float: right; display: none; font-size:15px;"  @click="SignLog(key)">or, Sign Up</span></li>
                 <li id="or" style="text-align: center;">or</li>
                 <li id="google-btn" style="margin-left: 100px !important; margin-top: 20px; text-align: center !important; width: 100%;"><div class="g-signin2" data-onsuccess="onSignIn" style="width: 100%;"></div></li>
-                <li id="forgetP"><h5 id="f-pass">Forgot Password?</h5></li>
+                <li id="forgetP"><h5 id="f-pass"><a href="https://pmservice.netlify.app/" target="_blank" >Service Requests</a></h5></li>
                 <li><h6 id="agree-line" style="font-size: 15px; font-family:Bahnschrift;text-align: center;"><a href="" style="text-align: center;" ><sup style="color:red;">*</sup> By signing up, you agree our terms & conditions</a></h6></li>
               </ul>
             </div>
